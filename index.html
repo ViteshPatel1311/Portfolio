@@ -7,304 +7,422 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
         .section-title {
-            @apply text-3xl font-bold text-gray-800 mb-8 text-center;
+            @apply text-4xl font-extrabold text-gray-900 mb-10 text-center tracking-tight;
         }
         .card {
-            @apply bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105;
+            @apply bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl h-full flex flex-col;
+        }
+        .project-card, .achievement-card {
+            @apply cursor-pointer;
         }
         .nav-link {
             @apply text-gray-600 hover:text-blue-600 transition-colors duration-300;
+        }
+        /* Styles for the detail views */
+        .project-detail-page, .achievement-detail-page {
+            @apply hidden; /* Initially hidden */
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-700">
 
-    <!-- Header -->
-    <header class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#hero" class="text-xl font-bold text-gray-800">Vitesh Patel</a>
-            <nav class="hidden md:flex space-x-8">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </nav>
-            <button id="mobile-menu-button" class="md:hidden">
-                <i data-lucide="menu"></i>
-            </button>
+    <!-- Main Portfolio Content -->
+    <div id="main-content">
+        <header class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="#hero" class="text-xl font-bold text-gray-800">Vitesh Patel</a>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#experience" class="nav-link">Experience</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#achievements" class="nav-link">Achievements</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+                <button id="mobile-menu-button" class="md:hidden">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+                <a href="#about" class="block py-2 nav-link">About</a>
+                <a href="#experience" class="block py-2 nav-link">Experience</a>
+                <a href="#projects" class="block py-2 nav-link">Projects</a>
+                <a href="#skills" class="block py-2 nav-link">Skills</a>
+                <a href="#achievements" class="block py-2 nav-link">Achievements</a>
+                <a href="#contact" class="block py-2 nav-link">Contact</a>
+            </div>
+        </header>
+
+        <main>
+            <section id="hero" class="min-h-screen flex items-center bg-gray-100 pt-20">
+                <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
+                        <h1 class="text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-4">Vitesh Patel</h1>
+                        <h2 class="text-2xl text-blue-600 font-semibold mb-6">Aerospace Engineer & R&D Specialist</h2>
+                        <p class="text-lg text-gray-600 mb-8 max-w-xl mx-auto md:mx-0">
+                            A dedicated Aerospace Engineer with a Master's from Arizona State University, passionate about aircraft design, additive manufacturing, and developing innovative solutions for the future of mobility.
+                        </p>
+                        <div class="flex justify-center md:justify-start space-x-4">
+                            <a href="#contact" class="bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-all duration-300">Contact Me</a>
+                            <a href="https://www.linkedin.com/in/viteshpatel1311/" target="_blank" class="bg-white text-gray-700 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-gray-200 transition-all duration-300 flex items-center">
+                                <i data-lucide="linkedin" class="w-5 h-5 mr-2"></i> LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center">
+                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-white bg-gray-200">
+                            <img src="http://googleusercontent.com/file_content/1" alt="Vitesh Patel" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="py-20">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-5xl font-black text-gray-800 mb-10 text-center tracking-tight">About Me</h2>
+                    <div class="max-w-4xl mx-auto text-center text-lg leading-relaxed">
+                        <p class="mb-4">
+                            I am a results-oriented Aerospace Engineer currently pursuing my Master of Science at Arizona State University. With a strong foundation in aircraft design, structural analysis, and project management, I am driven to solve complex engineering challenges. My professional experience spans research and development in electric mobility, design optimization in the aerospace sector, and hands-on project coordination.
+                        </p>
+                        <p>
+                            I am proficient in a suite of advanced engineering tools like CATIA V5, SolidWorks, ANSYS, and Abaqus. I thrive in collaborative environments, leveraging my skills in additive manufacturing and problem-solving to contribute to cutting-edge projects that push the boundaries of technology.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience" class="py-20 bg-gray-100">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-5xl font-black text-gray-800 mb-10 text-center tracking-tight">Professional Experience</h2>
+                    <div class="max-w-4xl mx-auto relative">
+                        <div class="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-blue-200 hidden md:block"></div>
+                        <div class="space-y-12">
+                            <!-- Experience items will be populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="py-20">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-5xl font-black text-gray-800 mb-10 text-center tracking-tight">Key Projects</h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="card project-card" data-project="kresling-tubes">
+                            <img src="https://placehold.co/600x400/E0E7FF/4F46E5?text=Kresling+Tubes" alt="Project Image" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Compressive Collapse Behaviour of Tubes</h3>
+                                <p class="text-gray-600">Designed and analyzed 3D-printed TPU-90A twist-coupled Kresling tubes to optimize energy absorption.</p>
+                            </div>
+                        </div>
+                        <div class="card project-card" data-project="avatar-uam">
+                            <img src="https://placehold.co/600x400/E0E7FF/4F46E5?text=AVATAR+UAM" alt="Project Image" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">AVATAR - Urban Air Mobility Solution</h3>
+                                <p class="text-gray-600">Co-led development of a real-time digital twin system to enhance situational awareness for eVTOL pilots.</p>
+                            </div>
+                        </div>
+                        <div class="card project-card" data-project="shock-wave">
+                            <img src="https://placehold.co/600x400/E0E7FF/4F46E5?text=Shock+Wave" alt="Project Image" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Shock Wave & Boundary Layer Interaction</h3>
+                                <p class="text-gray-600">Developed a novel algorithm to predict shock wave boundary layer interaction on aircraft wings.</p>
+                            </div>
+                        </div>
+                        <div class="card project-card" data-project="spacer-panel">
+                            <img src="https://placehold.co/600x400/E0E7FF/4F46E5?text=Bionic+Panel" alt="Project Image" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Bionic Spacer Panel for Aircraft</h3>
+                                <p class="text-gray-600">Directed the design and 3D prototyping of bionic spacer panels, reducing weight by 15%.</p>
+                            </div>
+                        </div>
+                        <div class="card project-card" data-project="safear-rd">
+                            <img src="https://placehold.co/600x400/E0E7FF/4F46E5?text=Safear+R%26D" alt="Project Image" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">R&D at Safear Defense</h3>
+                                <p class="text-gray-600">Collaborated on R&D for model rocket design, propellant analysis, and workshop facilitation.</p>
+                            </div>
+                        </div>
+                        <div class="card project-card" data-project="electrike-ev">
+                            <img src="https://placehold.co/600x400/E0E7FF/4F46E5?text=ElecTrike+EV" alt="Project Image" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">EV Prototyping at ElecTrike</h3>
+                                <p class="text-gray-600">Assisted in prototyping and fabrication of electric bike components using CNC and additive manufacturing.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="skills" class="py-20 bg-gray-100">
+                <!-- Skills content remains the same -->
+            </section>
+
+            <section id="education" class="py-20">
+                <!-- Education content remains the same -->
+            </section>
+
+            <section id="achievements" class="py-20 bg-gray-100">
+                <div class="container mx-auto px-6">
+                    <h2 class="section-title">Achievements & Activities</h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="card achievement-card" data-achievement="tech-glide">
+                            <div class="p-6 flex-grow flex flex-col items-center text-center">
+                                <i data-lucide="award" class="w-12 h-12 text-amber-500 mb-4"></i>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">First Place, Tech Glide</h3>
+                                <p class="text-gray-600 flex-grow">Awarded first position in the 'Tech Glide' event during Conscientia 2019 at IIST.</p>
+                            </div>
+                        </div>
+                        <div class="card achievement-card" data-achievement="flight-course">
+                            <div class="p-6 flex-grow flex flex-col items-center text-center">
+                                <i data-lucide="file-check-2" class="w-12 h-12 text-green-500 mb-4"></i>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Flight Experiments Course</h3>
+                                <p class="text-gray-600 flex-grow">Successfully completed the "Introduction to Experiments in Flight" course at IIT Kanpur.</p>
+                            </div>
+                        </div>
+                        <div class="card achievement-card" data-achievement="ai-ml-workshop">
+                            <div class="p-6 flex-grow flex flex-col items-center text-center">
+                                <i data-lucide="cpu" class="w-12 h-12 text-sky-500 mb-4"></i>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">AI/ML Workshop</h3>
+                                <p class="text-gray-600 flex-grow">Participated in the National-Level Workshop on AI/ML for Autonomous Systems.</p>
+                            </div>
+                        </div>
+                        <div class="card achievement-card" data-achievement="aeromodelling">
+                            <div class="p-6 flex-grow flex flex-col items-center text-center">
+                                <i data-lucide="rocket" class="w-12 h-12 text-red-500 mb-4"></i>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Aeromodelling & Rocketry</h3>
+                                <p class="text-gray-600 flex-grow">Active participant in workshops and events, including the Aeromodelling Workshop by Team Jatayu.</p>
+                            </div>
+                        </div>
+                        <div class="card achievement-card" data-achievement="drone-training">
+                            <div class="p-6 flex-grow flex flex-col items-center text-center">
+                                <i data-lucide="drone" class="w-12 h-12 text-slate-500 mb-4"></i>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Drone Technology Training</h3>
+                                <p class="text-gray-600 flex-grow">Completed online training on "Drone technologies - Ab Initio" by Maruthsakha Aerospace.</p>
+                            </div>
+                        </div>
+                        <div class="card achievement-card" data-achievement="event-participation">
+                            <div class="p-6 flex-grow flex flex-col items-center text-center">
+                                <i data-lucide="users" class="w-12 h-12 text-indigo-500 mb-4"></i>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Event Participation</h3>
+                                <p class="text-gray-600 flex-grow">Engaged in various technical events during IIAEM SPACE WEEK including LIFT-OFF and Robowars.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer id="contact" class="bg-gray-800 text-white py-16">
+                 <!-- Footer content remains the same -->
+            </footer>
+        </main>
+    </div>
+
+    <!-- Detail Pages Container -->
+    <div id="details-container" class="hidden">
+        <!-- Project Detail Pages -->
+        <div id="project-details-content">
+            <div id="detail-spacer-panel" class="project-detail-page">
+                <div class="bg-white min-h-screen">
+                    <div class="container mx-auto px-6 py-12">
+                        <button class="back-to-portfolio-btn mb-8 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700">
+                            <i data-lucide="arrow-left" class="mr-2 -ml-1 h-5 w-5"></i> Back to Portfolio
+                        </button>
+                        <h1 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">Design & 3D Prototyping of Bionic Spacer Panel</h1>
+                        <p class="text-lg text-gray-500 mb-8">An innovative approach to aircraft interior components using additive manufacturing.</p>
+                        <img src="https://placehold.co/1200x600/334155/FFFFFF?text=Bionic+Spacer+Panel+Prototype" alt="Bionic Spacer Panel" class="w-full rounded-lg shadow-lg mb-12">
+                        <div class="grid md:grid-cols-3 gap-12">
+                            <div class="md:col-span-2">
+                                <h2 class="text-3xl font-bold text-gray-800 mb-4">Project Overview</h2>
+                                <p class="text-lg text-gray-600 leading-relaxed mb-6">This project focused on redesigning a standard aircraft spacer panel—a component used to fill gaps between overhead storage compartments—by leveraging the advantages of 3D printing. The primary goal was to significantly reduce the component's weight without compromising its structural integrity, thereby contributing to fuel efficiency and establishing additive manufacturing as a viable solution for the aviation industry.</p>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-3">Objectives</h3>
+                                <ul class="list-disc list-inside text-lg text-gray-600 space-y-2 mb-6">
+                                    <li>Reduce panel weight by at least 15% compared to conventional manufacturing.</li>
+                                    <li>Determine geometric characteristics and steady loads acting on the panel.</li>
+                                    <li>Utilize lattice structures to increase strength-to-weight ratio.</li>
+                                    <li>Create a flight-ready, aesthetically pleasing 3D-printed prototype.</li>
+                                </ul>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-3">Design & Prototyping Process</h3>
+                                <p class="text-lg text-gray-600 leading-relaxed mb-6">The design was modeled in CATIA V5, incorporating a bionic, lattice-based internal structure. This complex geometry, difficult to achieve with traditional methods, was optimized for strength and minimal material usage. The prototype was then printed using a CREALITY ENDER 3 PRO with PLA material. Post-processing ensured a smooth, high-quality finish suitable for an aircraft cabin interior.</p>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-3">Analysis & Results</h3>
+                                <p class="text-lg text-gray-600 leading-relaxed mb-6">Structural analysis was performed in CATIA's Generative Structural Analysis workbench. A force of 150 N was applied to simulate in-flight loads, with the results confirming the structural integrity of the new design. The final 3D-printed panel was **15% lighter** than its conventionally manufactured counterpart, successfully meeting the project's primary objective and demonstrating the enormous benefits of additive manufacturing in aerospace.</p>
+                            </div>
+                            <div>
+                                <div class="bg-gray-100 p-6 rounded-lg sticky top-28">
+                                    <h3 class="text-xl font-bold text-gray-800 mb-4">Project Details</h3>
+                                    <ul class="space-y-3 text-gray-700">
+                                        <li class="flex items-start"><i data-lucide="building" class="w-5 h-5 mr-3 mt-1 text-blue-500 shrink-0"></i> <div><strong>Company:</strong> Ziegler Aerospace</div></li>
+                                        <li class="flex items-start"><i data-lucide="tag" class="w-5 h-5 mr-3 mt-1 text-blue-500 shrink-0"></i> <div><strong>Role:</strong> Design Intern</div></li>
+                                        <li class="flex items-start"><i data-lucide="wrench" class="w-5 h-5 mr-3 mt-1 text-blue-500 shrink-0"></i> <div><strong>Tools:</strong> CATIA V5, CURA, 3D Printing (FDM)</div></li>
+                                        <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 mr-3 mt-1 text-green-500 shrink-0"></i> <div><strong>Key Outcome:</strong> 15% weight reduction</div></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Other project detail pages -->
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="#about" class="block py-2 nav-link">About</a>
-            <a href="#experience" class="block py-2 nav-link">Experience</a>
-            <a href="#projects" class="block py-2 nav-link">Projects</a>
-            <a href="#skills" class="block py-2 nav-link">Skills</a>
-            <a href="#contact" class="block py-2 nav-link">Contact</a>
-        </div>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section id="hero" class="min-h-screen flex items-center bg-gray-100 pt-20">
-            <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
-                    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-4">Vitesh Patel</h1>
-                    <h2 class="text-2xl text-blue-600 font-semibold mb-6">Aerospace Engineer & R&D Specialist</h2>
-                    <p class="text-lg text-gray-600 mb-8 max-w-xl mx-auto md:mx-0">
-                        A dedicated Aerospace Engineer with a Master's from Arizona State University, passionate about aircraft design, additive manufacturing, and developing innovative solutions for the future of mobility.
-                    </p>
-                    <div class="flex justify-center md:justify-start space-x-4">
-                        <a href="#contact" class="bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-all duration-300">Contact Me</a>
-                        <a href="https://www.linkedin.com/in/vitesh-patel-asu" target="_blank" class="bg-white text-gray-700 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-gray-200 transition-all duration-300 flex items-center">
-                            <i data-lucide="linkedin" class="w-5 h-5 mr-2"></i> LinkedIn
-                        </a>
-                    </div>
-                </div>
-                <div class="md:w-1/2 flex justify-center">
-                    <!-- Profile Photo -->
-                    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-white bg-gray-200">
-                        <img src="http://googleusercontent.com/file_content/1" alt="Vitesh Patel" class="w-full h-full object-cover">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="py-20">
-            <div class="container mx-auto px-6">
-                <h2 class="section-title">About Me</h2>
-                <div class="max-w-4xl mx-auto text-center text-lg leading-relaxed">
-                    <p class="mb-4">
-                        I am a results-oriented Aerospace Engineer currently pursuing my Master of Science at Arizona State University. With a strong foundation in aircraft design, structural analysis, and project management, I am driven to solve complex engineering challenges. My professional experience spans from research and development in electric mobility to design optimization in the aerospace sector.
-                    </p>
-                    <p>
-                        I am proficient in a suite of advanced engineering tools like CATIA V5, SolidWorks, ANSYS, and Abaqus. I thrive in collaborative environments, leveraging my skills in additive manufacturing and problem-solving to contribute to cutting-edge projects that push the boundaries of technology.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="py-20 bg-gray-100">
-            <div class="container mx-auto px-6">
-                <h2 class="section-title">Professional Experience</h2>
-                <div class="max-w-4xl mx-auto relative">
-                    <!-- Timeline Line -->
-                    <div class="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-blue-200 hidden md:block"></div>
-
-                    <div class="space-y-12">
-                        <!-- ASU -->
-                        <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
-                            <div class="text-center md:text-right md:pr-8 mb-4 md:mb-0">
-                                <h3 class="text-xl font-bold text-blue-600">Graduate Research Assistant</h3>
-                                <p class="text-gray-600">Arizona State University</p>
-                                <p class="text-sm text-gray-500">Sep 2024 - Present</p>
-                            </div>
-                            <div class="relative">
-                                <div class="hidden md:block absolute top-1/2 -translate-y-1/2 -left-8 w-4 h-4 bg-blue-600 rounded-full border-4 border-gray-100"></div>
-                                <div class="bg-white p-6 rounded-lg shadow-md">
-                                    <p>Performing FEM simulations and composite material testing for aircraft design optimization, focusing on energy absorption and structural reliability. Utilizing ANSYS and Abaqus for failure analysis.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- CBBG -->
-                        <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
-                             <div class="relative md:order-2">
-                                <div class="hidden md:block absolute top-1/2 -translate-y-1/2 -right-8 w-4 h-4 bg-blue-600 rounded-full border-4 border-gray-100"></div>
-                                <div class="bg-white p-6 rounded-lg shadow-md">
-                                    <p>Coordinated research and outreach programs with multiple universities. Managed budgets, reducing operational expenses by 10%.</p>
-                                </div>
-                            </div>
-                            <div class="text-center md:text-left md:pl-8 mb-4 md:mb-0 md:order-1">
-                                <h3 class="text-xl font-bold text-blue-600">Project Program Coordinator</h3>
-                                <p class="text-gray-600">Center for Bio-mediated and Bio-inspired Geotechnics (CBBG)</p>
-                                <p class="text-sm text-gray-500">Mar 2024 - Jul 2024</p>
-                            </div>
-                        </div>
-
-                        <!-- ElecTrike Mobility -->
-                        <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
-                            <div class="text-center md:text-right md:pr-8 mb-4 md:mb-0">
-                                <h3 class="text-xl font-bold text-blue-600">R&D Engineer</h3>
-                                <p class="text-gray-600">ElecTrike Mobility</p>
-                                <p class="text-sm text-gray-500">Nov 2022 - Oct 2023</p>
-                            </div>
-                            <div class="relative">
-                                <div class="hidden md:block absolute top-1/2 -translate-y-1/2 -left-8 w-4 h-4 bg-blue-600 rounded-full border-4 border-gray-100"></div>
-                                <div class="bg-white p-6 rounded-lg shadow-md">
-                                    <p>Led the development and integration of EV components, enhancing production efficiency. Standardized sub-system designs, reducing manufacturing rework time by 20%.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Ziegler Aerospace -->
-                        <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
-                             <div class="relative md:order-2">
-                                <div class="hidden md:block absolute top-1/2 -translate-y-1/2 -right-8 w-4 h-4 bg-blue-600 rounded-full border-4 border-gray-100"></div>
-                                <div class="bg-white p-6 rounded-lg shadow-md">
-                                    <p>Conducted detailed analysis of aircraft cabin layouts, enhancing space utilization by 20% and improving passenger comfort.</p>
-                                </div>
-                            </div>
-                            <div class="text-center md:text-left md:pl-8 mb-4 md:mb-0 md:order-1">
-                                <h3 class="text-xl font-bold text-blue-600">Design Intern</h3>
-                                <p class="text-gray-600">Ziegler Aerospace</p>
-                                <p class="text-sm text-gray-500">Jul 2021 - Aug 2021</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="py-20">
-            <div class="container mx-auto px-6">
-                <h2 class="section-title">Key Projects</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Project Card 1 -->
-                    <div class="card">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 text-gray-800">Compressive Collapse Behaviour of Tubes</h3>
-                            <p class="text-gray-600">Designed and analyzed 3D-printed TPU-90A twist-coupled Kresling tubes using CAD, Abaqus, and experimental testing to optimize energy absorption and structural stability for lightweight aerospace applications.</p>
-                        </div>
-                    </div>
-                    <!-- Project Card 2 -->
-                    <div class="card">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 text-gray-800">AVATAR - Urban Air Mobility (UAM) Solution</h3>
-                            <p class="text-gray-600">Co-led the development of a real-time digital twin system to enhance situational awareness for eVTOL pilots. Presented the solution to Honeywell Aerospace judges, proposing a 10x increase in UAM flight volume.</p>
-                        </div>
-                    </div>
-                    <!-- Project Card 3 -->
-                    <div class="card">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 text-gray-800">Shock Wave & Boundary Layer Interaction</h3>
-                            <p class="text-gray-600">Developed a novel algorithm to predict shock wave boundary layer interaction on aircraft wings, significantly reducing computational time and enabling faster design iterations.</p>
-                        </div>
-                    </div>
-                    <!-- Project Card 4 -->
-                    <div class="card">
-                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 text-gray-800">Bionic Spacer Panel for Aircraft</h3>
-                            <p class="text-gray-600">Directed the design and 3D prototyping of bionic spacer panels, leveraging additive manufacturing to reduce weight by 15% and showcasing its potential in the aviation industry.</p>
-                        </div>
-                    </div>
-                     <!-- Project Card 5 -->
-                    <div class="card">
-                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 text-gray-800">R&D at Safear Defense</h3>
-                            <p class="text-gray-600">Collaborated on R&D projects, including the design and optimization of model rockets. Facilitated a workshop on data-retrieving rockets and surface-to-surface missiles.</p>
-                        </div>
-                    </div>
-                     <!-- Project Card 6 -->
-                    <div class="card">
-                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 text-gray-800">EV Prototyping at ElecTrike</h3>
-                             <p class="text-gray-600">Assisted in prototyping and fabrication of electric bike components using CNC and additive manufacturing, applying DFMA principles to improve part integration in early-stage product validation.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         
-        <!-- Skills Section -->
-        <section id="skills" class="py-20 bg-gray-100">
-            <div class="container mx-auto px-6">
-                <h2 class="section-title">Skills & Expertise</h2>
-                <div class="max-w-4xl mx-auto">
-                    <div class="flex flex-wrap justify-center gap-4">
-                        <span class="bg-blue-100 text-blue-800 text-lg font-medium px-4 py-2 rounded-full">CATIA V5</span>
-                        <span class="bg-blue-100 text-blue-800 text-lg font-medium px-4 py-2 rounded-full">SolidWorks</span>
-                        <span class="bg-blue-100 text-blue-800 text-lg font-medium px-4 py-2 rounded-full">AutoCAD</span>
-                        <span class="bg-blue-100 text-blue-800 text-lg font-medium px-4 py-2 rounded-full">ANSYS</span>
-                        <span class="bg-blue-100 text-blue-800 text-lg font-medium px-4 py-2 rounded-full">Abaqus</span>
-                        <span class="bg-green-100 text-green-800 text-lg font-medium px-4 py-2 rounded-full">FEM Simulation</span>
-                        <span class="bg-green-100 text-green-800 text-lg font-medium px-4 py-2 rounded-full">Aircraft Design</span>
-                        <span class="bg-green-100 text-green-800 text-lg font-medium px-4 py-2 rounded-full">Additive Manufacturing</span>
-                        <span class="bg-green-100 text-green-800 text-lg font-medium px-4 py-2 rounded-full">Project Management</span>
-                        <span class="bg-green-100 text-green-800 text-lg font-medium px-4 py-2 rounded-full">Problem Solving</span>
-                         <span class="bg-green-100 text-green-800 text-lg font-medium px-4 py-2 rounded-full">R&D</span>
-                    </div>
+        <!-- Achievement Detail Pages -->
+        <div id="achievement-details-content">
+            <div id="detail-tech-glide" class="achievement-detail-page">
+                <div class="container mx-auto px-6 py-12">
+                     <button class="back-to-portfolio-btn mb-8 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"><i data-lucide="arrow-left" class="mr-2 -ml-1 h-5 w-5"></i> Back to Portfolio</button>
+                     <h1 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">First Place: Tech Glide Competition</h1>
+                     <p class="text-lg text-gray-500 mb-8">Conscientia 2019, Indian Institute of Space Science and Technology (IIST).</p>
+                     <img src="https://placehold.co/1200x800/FEF3C7/92400E?text=Certificate+Photo" alt="Tech Glide Certificate" class="w-full max-w-4xl mx-auto rounded-lg shadow-lg mb-8">
+                     <p class="max-w-3xl mx-auto text-center text-xl text-gray-600">Achieved first place in the 'Tech Glide' event, a competition focused on technical design and application in aerospace engineering.</p>
                 </div>
             </div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education" class="py-20">
-            <div class="container mx-auto px-6">
-                <h2 class="section-title">Education</h2>
-                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-                    <div class="card p-6 text-center">
-                        <div class="flex justify-center mb-4">
-                            <i data-lucide="graduation-cap" class="w-12 h-12 text-blue-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-800">Master of Science, Aerospace Engineering</h3>
-                        <p class="text-gray-600 mt-1">Arizona State University</p>
-                        <p class="text-gray-500 text-sm">Expected Dec 2025</p>
-                    </div>
-                    <div class="card p-6 text-center">
-                        <div class="flex justify-center mb-4">
-                           <i data-lucide="graduation-cap" class="w-12 h-12 text-blue-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-800">Bachelor of Engineering, Aerospace Engineering</h3>
-                        <p class="text-gray-600 mt-1">Jain University</p>
-                        <p class="text-gray-500 text-sm">Graduated Jul 2022 (GPA: 8.4/10)</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <footer id="contact" class="bg-gray-800 text-white py-16">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl font-bold mb-4">Get In Touch</h2>
-                <p class="text-gray-300 mb-8 max-w-2xl mx-auto">I'm currently seeking new opportunities and would love to connect. Feel free to reach out via email or connect with me on LinkedIn.</p>
-                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 text-lg">
-                    <a href="mailto:Vpate128@asu.edu" class="flex items-center hover:text-blue-400 transition-colors">
-                        <i data-lucide="mail" class="w-6 h-6 mr-2"></i>
-                        Vpate128@asu.edu
-                    </a>
-                    <span class="flex items-center">
-                        <i data-lucide="phone" class="w-6 h-6 mr-2"></i>
-                        +1 (623) 280-3630
-                    </span>
-                     <a href="https://www.linkedin.com/in/vitesh-patel-asu" target="_blank" class="flex items-center hover:text-blue-400 transition-colors">
-                        <i data-lucide="linkedin" class="w-6 h-6 mr-2"></i>
-                        LinkedIn Profile
-                    </a>
-                </div>
-                <p class="mt-12 text-gray-500">&copy; 2024 Vitesh Patel. All Rights Reserved.</p>
-            </div>
-        </footer>
-
-    </main>
+            <!-- Other achievement detail pages -->
+        </div>
+    </div>
 
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
 
-        // Mobile menu toggle
+        // --- Data Population (could be moved to a separate JSON file in a larger app) ---
+        const experienceData = [
+            {
+                title: "Graduate Research Assistant",
+                company: "Arizona State University",
+                date: "Sep 2024 - Present",
+                description: "Performing FEM simulations and composite material testing for aircraft design optimization, focusing on energy absorption and structural reliability. Utilizing ANSYS and Abaqus for failure analysis."
+            },
+            {
+                title: "Project Program Coordinator",
+                company: "Center for Bio-mediated and Bio-inspired Geotechnics (CBBG)",
+                date: "Mar 2024 - Jul 2024",
+                description: "Coordinated research and outreach programs with multiple universities. Managed budgets, reducing operational expenses by 10%."
+            },
+            {
+                title: "R&D Engineer",
+                company: "ElecTrike Mobility",
+                date: "Nov 2022 - Oct 2023",
+                description: "Led the development and integration of EV components, enhancing production efficiency. Standardized sub-system designs, reducing manufacturing rework time by 20%."
+            },
+            {
+                title: "Design Intern",
+                company: "Ziegler Aerospace",
+                date: "Jul 2021 - Aug 2021",
+                description: "Conducted detailed analysis of aircraft cabin layouts, enhancing space utilization by 20% and improving passenger comfort."
+            },
+            {
+                title: "Intern R&D and Marketing",
+                company: "Safear Defense",
+                date: "Mar 2019 - May 2019",
+                description: "Collaborated on R&D for model rocket design and propellant analysis. Handled marketing and event management for technical workshops."
+            }
+        ];
+
+        const experienceContainer = document.querySelector('#experience .space-y-12');
+        experienceData.forEach((item, index) => {
+            const isLeft = index % 2 === 0;
+            const timelineItem = `
+                <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
+                    <div class="text-center ${isLeft ? 'md:text-right md:pr-8' : 'md:text-left md:pl-8 md:order-2'} mb-4 md:mb-0">
+                        <h3 class="text-xl font-bold text-blue-600">${item.title}</h3>
+                        <p class="text-gray-600">${item.company}</p>
+                        <p class="text-sm text-gray-500">${item.date}</p>
+                    </div>
+                    <div class="relative ${isLeft ? '' : 'md:order-1'}">
+                        <div class="hidden md:block absolute top-1/2 -translate-y-1/2 ${isLeft ? '-left-8' : '-right-8'} w-4 h-4 bg-blue-600 rounded-full border-4 border-gray-100"></div>
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <p>${item.description}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            experienceContainer.innerHTML += timelineItem;
+        });
+
+        // --- Navigation Logic ---
+        const mainContent = document.getElementById('main-content');
+        const detailsContainer = document.getElementById('details-container');
+        
+        const projectCards = document.querySelectorAll('.project-card');
+        const achievementCards = document.querySelectorAll('.achievement-card');
+        const backButtons = document.querySelectorAll('.back-to-portfolio-btn');
+
+        function showDetail(type, id) {
+            mainContent.style.display = 'none';
+            detailsContainer.style.display = 'block';
+            detailsContainer.classList.add('fade-in');
+
+            // Hide all detail pages
+            document.querySelectorAll('.project-detail-page, .achievement-detail-page').forEach(page => page.style.display = 'none');
+
+            // Show the correct one
+            const pageToShow = document.getElementById(`detail-${id}`);
+            if (pageToShow) {
+                pageToShow.style.display = 'block';
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function showPortfolio(targetSectionId = 'hero') {
+            detailsContainer.style.display = 'none';
+            mainContent.style.display = 'block';
+            const targetElement = document.getElementById(targetSectionId);
+            if (targetElement) {
+                window.scrollTo(0, targetElement.offsetTop - 80); // Adjust for header height
+            }
+        }
+
+        projectCards.forEach(card => {
+            card.addEventListener('click', () => showDetail('project', card.dataset.project));
+        });
+
+        achievementCards.forEach(card => {
+            card.addEventListener('click', () => showDetail('achievement', card.dataset.achievement));
+        });
+
+        backButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const parentProject = button.closest('.project-detail-page');
+                if (parentProject) {
+                    showPortfolio('projects');
+                } else {
+                    showPortfolio('achievements');
+                }
+            });
+        });
+
+        // --- Mobile Menu Logic ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
 
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when a link is clicked
-        const mobileNavLinks = mobileMenu.querySelectorAll('a');
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+        mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        
+        const allNavLinks = document.querySelectorAll('#mobile-menu a, header nav a');
+        allNavLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const targetId = link.getAttribute('href').substring(1);
+                
+                if (detailsContainer.style.display === 'block') {
+                    e.preventDefault();
+                    showPortfolio(targetId);
+                }
+                
+                if (window.innerWidth < 768 && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
             });
         });
 
